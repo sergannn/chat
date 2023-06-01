@@ -18,7 +18,7 @@ const io = require("socket.io")(httpServer,
     var cards;
     //select name from cards ( внутри запроса перемешать)
     cards=["10c.jpg","10d.jpg","10h.jpg","10s.jpg","6c.jpg","6d.jpg","6h.jpg","6s.jpg","7c.jpg","7d.jpg","7h.jpg","7s.jpg","8c.jpg","8d.jpg","8h.jpg","8s.jpg","9c.jpg","9d.jpg","9h.jpg","9s.jpg","Ac.jpg","Ad.jpg","Ah.jpg","As.jpg","Jc.jpg","Jd.jpg","Jh.jpg","Js.jpg","Kc.jpg","Kd.jpg","Kh.jpg","Ks.jpg","Qc.jpg","Qd.jpg","Qh.jpg","Qs.jpg"];
-prices= {
+var prices= {
     "10c.jpg": 10,
     "10d.jpg": 10,
     "10h.jpg": 10,
@@ -75,6 +75,7 @@ cards = shuffle(cards);
           }); //partner_id - это id не того, кто нажал ( то есть партнера )
            
           io.to(client.id).emit("give_card",cards[0]);//даем карту тому, кто нажал
+          console.log(prices[cards[0]]);
           io.to(client.id).emit("score", prices[cards[0] ] ); //передаем очки данной карты
           players_info[client.id].cards.push(cards[0]);
           // добавляем в инфу об игроке карту
