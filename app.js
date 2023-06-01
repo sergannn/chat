@@ -76,7 +76,7 @@ cards = shuffle(cards);
            
           io.to(client.id).emit("give_card",cards[0]);//даем карту тому, кто нажал
           console.log(prices[cards[0]]);
-          io.to(client.id).emit("score", prices[cards[0] ] ); //передаем очки данной карты
+          io.to(client.id).emit("score", (prices[cards[0]] || 10)); //передаем очки данной карты
           players_info[client.id].cards.push(cards[0]);
           // добавляем в инфу об игроке карту
           // insert into players .....  cards[0]
